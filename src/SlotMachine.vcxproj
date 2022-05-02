@@ -149,11 +149,14 @@
     <ClCompile Include="engine.cpp" />
     <ClCompile Include="eventmanager.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="stategame.cpp" />
+    <ClCompile Include="stateidle.cpp" />
     <ClCompile Include="statemanager.cpp" />
     <ClCompile Include="window.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="basestate.h" />
+    <ClInclude Include="buttoninfo.h" />
     <ClInclude Include="commontypes.h" />
     <ClInclude Include="engine.h" />
     <ClInclude Include="eventmanager.h" />
@@ -162,12 +165,17 @@
     <ClInclude Include="resource.h" />
     <ClInclude Include="resourcemanager.h" />
     <ClInclude Include="sharedcontext.h" />
+    <ClInclude Include="stategame.h" />
+    <ClInclude Include="stateidle.h" />
     <ClInclude Include="statemanager.h" />
     <ClInclude Include="texturemanager.h" />
     <ClInclude Include="window.h" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Resource.rc" />
+  </ItemGroup>
+  <ItemGroup>
+    <Font Include="resources\CyrilicOld.TTF" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

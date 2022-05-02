@@ -1,8 +1,12 @@
 #pragma once
 
 #include "basestate.h"
+#include "fontmanager.h"
 #include "sharedcontext.h"
+#include "stategame.h"
+#include "stateidle.h"
 // include every state.h
+#include "texturemanager.h"
 
 #include "SFML/Graphics.hpp"
 
@@ -28,6 +32,7 @@ using StateFactory = std::unordered_map<StateType, std::function<BaseState*(void
 
 class StateManager final
 {
+	friend class Engine;
 public:
 
 	StateManager(SharedContext* context);
@@ -59,6 +64,11 @@ private:
 	}
 
 	SharedContext* m_context;
+
+	/* Should be here so StateManager controls the lifetime of TextureManager & FontManager*/
+	TextureManager m_texture_manager;
+
+	FontManager m_font_manager;
 
 	StateContainer m_states;
 

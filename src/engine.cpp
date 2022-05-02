@@ -6,8 +6,8 @@ Engine::Engine() : m_window{ {1024u, 1024u}, "Slot Machine" }, m_state_manager{ 
 
 	m_context.m_window = &m_window;
 	m_context.m_event_manager = m_window.getEventManager();
-	m_context.m_texture_manager = &m_texture_manager;
-	m_context.m_font_manager = &m_font_manager;
+	m_context.m_texture_manager = &m_state_manager.m_texture_manager;
+	m_context.m_font_manager = &m_state_manager.m_font_manager;
 
 	// TODO: should fix this
 	m_state_manager.switchTo(StateType::Game);

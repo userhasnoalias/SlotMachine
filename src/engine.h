@@ -36,8 +36,4 @@ private:
 	Window m_window;
 
 	StateManager m_state_manager;
-
-	TextureManager m_texture_manager;
-
-	FontManager m_font_manager;
 };

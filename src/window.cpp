@@ -74,6 +74,11 @@ bool Window::isFullSreen() const
 	return m_fullscreen;
 }
 
+sf::Vector2u Window::size() const
+{
+	return m_size;
+}
+
 sf::RenderWindow* Window::getRenderWindow()
 {
 	return &m_window;

@@ -2,6 +2,8 @@
 
 StateManager::StateManager(SharedContext* context) : m_context{ context }
 {
+	registerState<StateIdle>(StateType::StartGame);
+	registerState<StateGame>(StateType::Game);
 	// register states
 }
 
@@ -94,7 +96,7 @@ void StateManager::switchTo(StateType type)
 	{
 		if (it->first == type)
 		{
-			it->second->onDeactivation();
+			m_states.back().second->onDeactivation();
 			StateType tmp_type = it->first;
 			BaseState* tmp_base = it->second;
 			m_states.erase(it);
