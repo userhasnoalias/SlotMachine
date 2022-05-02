@@ -10,7 +10,7 @@
 class FontManager : public ResourceManager<FontManager, sf::Font>
 {
 public:
-	FontManager() : ResourceManager{ {}, MAKEINTRESOURCEA(8) }
+	FontManager() : ResourceManager{ {IDR_CYR}, MAKEINTRESOURCEA(8) }
 	{}
 
 	sf::Font* load(ResInfo resource)

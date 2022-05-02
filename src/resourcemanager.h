@@ -94,8 +94,11 @@ private:
 
 	std::pair<T*, std::size_t>* find(int32 id)
 	{
+		if (m_resources.empty())
+		{
+			std::cout << "empty!";
+		}
 		auto it = m_resources.find(id);
-		assert(it->second.first);
 		return it != m_resources.end() ? &it->second : nullptr;
 	}
 
