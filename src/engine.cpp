@@ -1,6 +1,6 @@
 #include "engine.h"
 
-Engine::Engine() : m_window{ {1024u, 1024u}, "Slot Machine" }, m_state_manager{ &m_context }
+Engine::Engine() : m_window{ {1200u, 720u}, "Slot Machine" }, m_state_manager{ &m_context }
 {
 	m_clock.restart();
 

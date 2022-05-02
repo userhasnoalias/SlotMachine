@@ -9,7 +9,7 @@ StateIdle::StateIdle(StateManager* state_mgr) : BaseState{ state_mgr }
 	m_button.label = "Start";
 	m_button.character_size = 60;
 	m_button.size = { 208.f, 104.f };
-	m_button.button_position = { 700.f, 200.f };
+	m_button.button_position = { 900.f, 200.f };
 	m_button.label_color = sf::Color::Magenta;
 	m_button.button_color = sf::Color::Red;
 }
