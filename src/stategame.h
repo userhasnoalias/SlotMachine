@@ -1,6 +1,7 @@
 #pragma once
 
 #include "basestate.h"
+#include "buttoninfo.h"
 
 class StateGame : public BaseState
 {
@@ -20,4 +21,13 @@ public:
 	virtual void update(const sf::Time& delta_seconds) override;
 
 	virtual void draw() override;
+
+	void onButtonClick(EventDetails* details);
+private:
+
+	sf::Text m_button_text;
+
+	sf::RectangleShape m_button_shape;
+
+	ButtonInfo m_info;
 };
