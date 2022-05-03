@@ -58,7 +58,7 @@ void StateGame::onDeactivation()
 	std::cout << __FUNCTION__ << '\n';
 }
 
-void StateGame::update(const sf::Time& delta_seconds)
+void StateGame::update(float dt)
 {
 
 }

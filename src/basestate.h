@@ -23,7 +23,7 @@ public:
 	// Fired on an old state that was just removed/moved back
 	virtual void onDeactivation() = 0;
 
-	virtual void update(const sf::Time& delta_seconds) = 0;
+	virtual void update(float dt) = 0;
 
 	virtual void draw() = 0;
 

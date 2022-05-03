@@ -17,7 +17,7 @@ Engine::Engine() : m_window{ {1200u, 720u}, "Slot Machine" }, m_state_manager{ &
 void Engine::update()
 {
 	m_window.update();
-	m_state_manager.update(m_elapsed);
+	m_state_manager.update(m_elapsed.asSeconds());
 }
 
 void Engine::render()

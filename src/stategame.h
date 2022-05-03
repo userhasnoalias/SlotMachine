@@ -18,7 +18,7 @@ public:
 
 	virtual void onDeactivation() override;
 
-	virtual void update(const sf::Time& delta_seconds) override;
+	virtual void update(float dt) override;
 
 	virtual void draw() override;
 

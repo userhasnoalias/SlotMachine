@@ -42,7 +42,7 @@ public:
 	// This function will remove unnecessary states at the end of game loop
 	void processRemovals();
 
-	void update(const sf::Time& delta_seconds);
+	void update(float dt);
 
 	void draw();
 

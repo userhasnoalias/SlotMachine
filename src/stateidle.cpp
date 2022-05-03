@@ -60,7 +60,7 @@ void StateIdle::onDeactivation()
 	std::cout << __FUNCTION__ << '\n';
 }
 
-void StateIdle::update(const sf::Time& delta_seconds)
+void StateIdle::update(float dt)
 {}
 
 void StateIdle::draw()

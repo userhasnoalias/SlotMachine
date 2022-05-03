@@ -25,7 +25,7 @@ void StateManager::processRemovals()
 	}
 }
 
-void StateManager::update(const sf::Time& delta_seconds)
+void StateManager::update(float dt)
 {
 	if (m_states.empty()) { return; }
 
@@ -48,12 +48,12 @@ void StateManager::update(const sf::Time& delta_seconds)
 
 		for (; it != m_states.end(); ++it)
 		{
-			it->second->update(delta_seconds);
+			it->second->update(dt);
 		}
 	}
 	else
 	{
-		m_states.back().second->update(delta_seconds);
+		m_states.back().second->update(dt);
 	}
 }
 
