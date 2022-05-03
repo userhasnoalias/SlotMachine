@@ -10,8 +10,8 @@
 class TextureManager : public ResourceManager<TextureManager, sf::Texture>
 {
 public:
-	// TODO fix
-	TextureManager() : ResourceManager{ {}, "TEXTURE" }
+
+	TextureManager() : ResourceManager{ {IDR_BG}, "TEXTURE" }
 	{}
 
 	sf::Texture* load(ResInfo resource)

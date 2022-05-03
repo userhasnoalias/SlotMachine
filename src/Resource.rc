@@ -50,7 +50,15 @@ END
 // Font
 //
 
-IDR_CYR               FONT                    "resources\\CyrilicOld.TTF"
+IDR_CYR                 FONT                    "resources\\CyrilicOld.TTF"
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Texture
+//
+
+IDR_BG            TEXTURE                 "resources\\background.jpg"
 
 #endif    // Русский (Россия) resources
 /////////////////////////////////////////////////////////////////////////////
