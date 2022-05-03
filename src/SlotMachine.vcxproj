@@ -146,9 +146,11 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="button.cpp" />
     <ClCompile Include="engine.cpp" />
     <ClCompile Include="eventmanager.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="slot.cpp" />
     <ClCompile Include="stategame.cpp" />
     <ClCompile Include="stateidle.cpp" />
     <ClCompile Include="statemanager.cpp" />
@@ -156,8 +158,10 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="basestate.h" />
+    <ClInclude Include="button.h" />
     <ClInclude Include="buttoninfo.h" />
     <ClInclude Include="commontypes.h" />
+    <ClInclude Include="constants.h" />
     <ClInclude Include="engine.h" />
     <ClInclude Include="eventmanager.h" />
     <ClInclude Include="fontmanager.h" />
@@ -165,6 +169,7 @@
     <ClInclude Include="resource.h" />
     <ClInclude Include="resourcemanager.h" />
     <ClInclude Include="sharedcontext.h" />
+    <ClInclude Include="slot.h" />
     <ClInclude Include="stategame.h" />
     <ClInclude Include="stateidle.h" />
     <ClInclude Include="statemanager.h" />
@@ -176,6 +181,9 @@
   </ItemGroup>
   <ItemGroup>
     <Font Include="resources\CyrilicOld.TTF" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="resources\background.jpg" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -2,6 +2,7 @@
 
 #include "eventmanager.h"
 #include "fontmanager.h"
+#include "slot.h"
 #include "texturemanager.h"
 #include "window.h"
 
@@ -14,6 +15,8 @@ struct SharedContext
 	FontManager* m_font_manager = nullptr;
 
 	Window* m_window = nullptr;
+
+	Slot* m_slot = nullptr;
 
 	SharedContext() {}
 };

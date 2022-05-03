@@ -3,6 +3,8 @@
 #include "basestate.h"
 #include "buttoninfo.h"
 
+class Slot;
+
 class StateIdle : public BaseState
 {
 public:
@@ -25,10 +27,6 @@ public:
 
 	void onButtonClick(EventDetails* details);
 private:
-
-	sf::Text m_button_text;
-
-	sf::RectangleShape m_button_shape;
-
-	ButtonInfo m_info;
+	
+	Slot m_slot;
 };
