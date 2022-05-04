@@ -1,24 +1,36 @@
 #include "button.h"
 #include "buttoninfo.h"
+#include "constants.h"
+#include "reel.h"
 #include "sharedcontext.h"
 #include "slot.h"
 
 #include <algorithm>
+#include <cassert>
 
-Slot::Slot(SharedContext* context) : m_context{ context }
+Slot::Slot(SharedContext* context, int32 reel_count) : m_context{ context }
 {
 	TextureManager* texture_mgr = m_context->m_texture_manager;
 	texture_mgr->requireResource(IDR_BG);
+	texture_mgr->requireResource(IDR_ICONS);
 
 	m_background.setTexture(*texture_mgr->getResource(IDR_BG), true);
 
 	createButtons();
+	createIconSprites();
+	createReels(reel_count);
 }
 
 Slot::~Slot()
 {
+	for (auto& icon : m_icons)
+	{
+		delete icon.second;
+	}
+
 	TextureManager* texture_mgr = m_context->m_texture_manager;
 	texture_mgr->releaseResource(IDR_BG);
+	texture_mgr->releaseResource(IDR_ICONS);
 }
 
 void Slot::update(float dt)
@@ -35,6 +47,11 @@ void Slot::draw()
 	{
 		button.draw();
 	}
+
+	for (auto& reel : m_reels)
+	{
+		reel.draw(m_context->m_window);
+	}
 }
 
 const sf::RectangleShape* Slot::getButtonByName(const std::string& name)
@@ -47,6 +64,11 @@ const sf::RectangleShape* Slot::getButtonByName(const std::string& name)
 	}
 
 	return shape;
+}
+
+const IconContainer* Slot::getIconSprites() const
+{
+	return &m_icons;
 }
 
 void Slot::createButtons()
@@ -71,4 +93,28 @@ void Slot::createButtons()
 
 	m_buttons.emplace_back(m_context, start);
 	m_buttons.emplace_back(m_context, stop);
+}
+
+void Slot::createIconSprites()
+{
+	sf::Texture* fruit_texture = m_context->m_texture_manager->getResource(IDR_ICONS);
+
+	std::vector<sf::IntRect> rects{ k7Rect, kWatermelonRect, kPlumRect, kLemonRect, kBananaRect, kBigwinRect, kCherryRect, kOrangeRect };
+	assert(rects.size() == kIconCount);
+	
+	std::vector<std::string> names{ "7", "Watermelon", "Plum", "Lemon", "Banana", "Bigwin", "Cherry", "Orange" };
+	assert(names.size() == kIconCount);
+
+	for (int32 i = 0; i < names.size(); ++i)
+	{
+		m_icons.emplace(names[i], new sf::Sprite(*fruit_texture, rects[i]));
+	}
+}
+
+void Slot::createReels(int32 count)
+{
+	for (int32 i = 0; i < count; ++i)
+	{
+		m_reels.emplace_back(Reel(this, kFirstReelPosition * static_cast<float>(i + 1)));
+	}
 }

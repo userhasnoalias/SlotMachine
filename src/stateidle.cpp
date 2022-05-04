@@ -5,7 +5,7 @@
 
 #include <iostream>
 
-StateIdle::StateIdle(StateManager* state_mgr) : BaseState{ state_mgr }, m_slot{ m_state_manager->getContext() }
+StateIdle::StateIdle(StateManager* state_mgr) : BaseState{ state_mgr }, m_slot{ m_state_manager->getContext(), 1 }
 {
 	m_state_manager->getContext()->m_slot = &m_slot;
 }

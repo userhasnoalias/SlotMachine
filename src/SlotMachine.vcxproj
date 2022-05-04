@@ -150,6 +150,7 @@
     <ClCompile Include="engine.cpp" />
     <ClCompile Include="eventmanager.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="reel.cpp" />
     <ClCompile Include="slot.cpp" />
     <ClCompile Include="stategame.cpp" />
     <ClCompile Include="stateidle.cpp" />
@@ -166,6 +167,7 @@
     <ClInclude Include="eventmanager.h" />
     <ClInclude Include="fontmanager.h" />
     <ClInclude Include="loadfromrc.h" />
+    <ClInclude Include="reel.h" />
     <ClInclude Include="resource.h" />
     <ClInclude Include="resourcemanager.h" />
     <ClInclude Include="sharedcontext.h" />
@@ -184,6 +186,10 @@
   </ItemGroup>
   <ItemGroup>
     <Image Include="resources\background.jpg" />
+    <Image Include="resources\fruits.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="texture1.bin" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

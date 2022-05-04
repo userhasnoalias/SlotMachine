@@ -55,10 +55,18 @@ IDR_CYR                 FONT                    "resources\\CyrilicOld.TTF"
 
 /////////////////////////////////////////////////////////////////////////////
 //
-// Texture
+// TEXTURE
 //
 
-IDR_BG            TEXTURE                 "resources\\background.jpg"
+IDR_BG                  TEXTURE                 "resources\\background.jpg"
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// PNG
+//
+
+IDR_ICONS                TEXTURE                     "resources\\fruits.png"
 
 #endif    // Русский (Россия) resources
 /////////////////////////////////////////////////////////////////////////////

@@ -26,5 +26,6 @@ public:
 
 	void onButtonClick(EventDetails* details);
 private:
+
 	Slot* m_slot;
 };

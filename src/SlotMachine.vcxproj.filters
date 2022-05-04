@@ -42,6 +42,9 @@
     <ClCompile Include="button.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
+    <ClCompile Include="reel.cpp">
+      <Filter>Исходные файлы</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="window.h">
@@ -98,6 +101,9 @@
     <ClInclude Include="constants.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
+    <ClInclude Include="reel.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Resource.rc">
@@ -113,5 +119,13 @@
     <Image Include="resources\background.jpg">
       <Filter>Файлы ресурсов</Filter>
     </Image>
+    <Image Include="resources\fruits.png">
+      <Filter>Файлы ресурсов</Filter>
+    </Image>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="texture1.bin">
+      <Filter>Файлы ресурсов</Filter>
+    </None>
   </ItemGroup>
 </Project>
