@@ -1,4 +1,5 @@
 #include "constants.h"
+#include "math.h"
 #include "reel.h"
 #include "slot.h"
 #include "window.h"
@@ -19,6 +20,8 @@ Reel::Reel(Slot* owner, const sf::Vector2f& position) : m_slot{ owner }, m_posit
 
 void Reel::update(float dt)
 {
+	m_speed = math::interpConstantTo(m_speed, m_target_speed, dt, m_acceleration);
+
 	for (auto& icon : m_icons)
 	{
 		icon.second.y += m_speed * dt;

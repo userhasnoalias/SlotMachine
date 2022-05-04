@@ -1,3 +1,4 @@
+#include "engine.h"
 #include "eventmanager.h"
 #include "stategame.h"
 #include "statemanager.h"
@@ -35,11 +36,7 @@ void StateGame::onDeactivation()
 
 void StateGame::update(float dt)
 {
-	if (!m_slot)
-	{
-		std::cout << "m_slot null!\n";
-	}
-	m_slot->update(dt);
+	m_slot->play(dt);
 }
 
 void StateGame::draw()

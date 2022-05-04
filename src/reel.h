@@ -53,5 +53,11 @@ private:
 
 	IconWheelContainer m_icons;
 
+	// Current reel speed
 	float m_speed = 50.f;
+
+	// Speed reel is going to achieve
+	float m_target_speed = 500.f;
+
+	float m_acceleration = 250.f;
 };

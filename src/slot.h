@@ -4,6 +4,7 @@
 
 #include <SFML/Graphics.hpp>
 
+//#include <functional>
 #include <string>
 #include <unordered_map>
 #include <vector>
@@ -15,6 +16,8 @@ class Reel;
 // This maps each fruit sprite to a string
 using IconContainer = std::unordered_map<std::string, sf::Sprite*>;
 
+//using SingleDelegate = std::function<void()>;
+
 class Slot
 {
 public:
@@ -23,13 +26,19 @@ public:
 
 	~Slot();
 
-	void update(float dt);
+	void spinReels(float dt);
 
 	void draw();
 
 	const sf::RectangleShape* getButtonByName(const std::string& name);
 
 	const IconContainer* getIconSprites() const;
+
+	//template<class T>
+	//void bindOnTimerEnd(T* object, void(T::* func)())
+	//{
+	//	onTimerEnd = std::bind(func, object);
+	//}
 
 private:
 
@@ -48,4 +57,8 @@ private:
 	IconContainer m_icons;
 
 	std::vector<Reel> m_reels;
+
+	//float m_spin_time = 5.f;
+
+	//SingleDelegate onTimerEnd;
 };

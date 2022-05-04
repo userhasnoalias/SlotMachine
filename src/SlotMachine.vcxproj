@@ -167,6 +167,7 @@
     <ClInclude Include="eventmanager.h" />
     <ClInclude Include="fontmanager.h" />
     <ClInclude Include="loadfromrc.h" />
+    <ClInclude Include="math.h" />
     <ClInclude Include="reel.h" />
     <ClInclude Include="resource.h" />
     <ClInclude Include="resourcemanager.h" />

@@ -33,7 +33,7 @@ Slot::~Slot()
 	texture_mgr->releaseResource(IDR_ICONS);
 }
 
-void Slot::update(float dt)
+void Slot::spinReels(float dt)
 {
 	for (auto& reel : m_reels)
 	{
