@@ -33,9 +33,13 @@ void StateGame::onDeactivation()
 	std::cout << __FUNCTION__ << '\n';
 }
 
-void StateGame::update([[maybe_unused]] float dt)
+void StateGame::update(float dt)
 {
-
+	if (!m_slot)
+	{
+		std::cout << "m_slot null!\n";
+	}
+	m_slot->update(dt);
 }
 
 void StateGame::draw()

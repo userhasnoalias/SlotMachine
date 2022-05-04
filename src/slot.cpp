@@ -35,7 +35,10 @@ Slot::~Slot()
 
 void Slot::update(float dt)
 {
-
+	for (auto& reel : m_reels)
+	{
+		reel.update(dt);
+	}
 }
 
 void Slot::draw()

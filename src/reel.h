@@ -48,4 +48,6 @@ private:
 	sf::Vector2f m_position;
 
 	IconWheelContainer m_icons;
+
+	float m_speed = 100.f;
 };

@@ -14,7 +14,10 @@ Reel::Reel(Slot* owner, const sf::Vector2f& position) : m_slot{ owner }, m_posit
 
 void Reel::update(float dt)
 {
-
+	for (auto& icon : m_icons)
+	{
+		icon.second.y += m_speed * dt;
+	}
 }
 
 void Reel::draw(Window* window)
