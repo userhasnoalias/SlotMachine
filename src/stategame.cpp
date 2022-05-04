@@ -36,7 +36,7 @@ void StateGame::onDeactivation()
 
 void StateGame::update(float dt)
 {
-	m_slot->play(dt);
+	m_slot->spinReels(dt);
 }
 
 void StateGame::draw()

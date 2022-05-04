@@ -29,7 +29,7 @@ struct ReelIconOrders
 			return s_reel1;
 		default:
 			assert(false && "Reel is not initialized with icon order!");
-			return {};
+			return s_reel1;
 		}
 	}
 
