@@ -12,6 +12,7 @@ struct SharedContext;
 class Button;
 class Reel;
 
+// This maps each fruit sprite to a string
 using IconContainer = std::unordered_map<std::string, sf::Sprite*>;
 
 class Slot

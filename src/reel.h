@@ -7,29 +7,33 @@
 #include <cassert>
 #include <iostream>
 #include <string>
+#include <string_view>
 #include <vector>
 
 class Slot;
 class Window;
 
-using IconWheelContainer = std::vector<std::pair<std::string, sf::Vector2f>>;
+// We use string to find appropriate sprite from Slot class icon container
+using IconWheelContainer = std::vector<std::pair<std::string_view, sf::Vector2f>>;
 
 struct ReelIconOrders
 {
 	// Get unique icon order for each reel
-	static std::vector<std::string> getIconOrderForReel()
+	static const std::vector<std::string>& getIconOrderForReel()
 	{
 		static int32 s_reel_number = 0;
 		++s_reel_number;
 		switch (s_reel_number)
 		{
 		case 1:
-			return { "Orange", "Watermelon", "7", "Banana" };
+			return s_reel1;
 		default:
 			assert(false && "Reel is not initialized with icon order!");
 			return {};
 		}
 	}
+
+	static const std::vector<std::string> s_reel1;
 };
 
 class Reel
