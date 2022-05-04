@@ -8,7 +8,8 @@ constexpr inline int32 kButtonsCount = 2;
 constexpr inline int32 kIconWidth = 160;
 constexpr inline int32 kIconHeight = 160;
 constexpr inline int32 kIconCount = 8;
-const sf::Vector2f kFirstReelPosition{ 100.f, 100.f };
+constexpr inline float kSlotLoopY = 50.f;
+const sf::Vector2f kFirstReelPosition{ 100.f, 0.f };
 
 const sf::IntRect k7Rect{ 14, 24, kIconWidth, kIconHeight };
 const sf::IntRect kWatermelonRect{ 220, 25, kIconWidth, kIconHeight };

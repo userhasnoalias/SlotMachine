@@ -53,5 +53,5 @@ private:
 
 	IconWheelContainer m_icons;
 
-	float m_speed = 100.f;
+	float m_speed = 50.f;
 };
