@@ -110,11 +110,13 @@ void EventManager::update()
 				{
 					cur_bind->m_hit_counter += 1;
 				}
+				break;
 			case EventType::Mouse:
 				if (sf::Mouse::isButtonPressed(sf::Mouse::Button(code.m_code)))
 				{
 					cur_bind->m_hit_counter += 1;
 				}
+				break;
 			default:
 				break;
 			}
