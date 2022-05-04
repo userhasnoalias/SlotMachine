@@ -10,8 +10,8 @@ Engine::Engine() : m_window{ {1200u, 720u}, "Slot Machine" }, m_state_manager{ &
 	m_context.m_font_manager = &m_state_manager.m_font_manager;
 
 	// TODO: should fix this
-	m_state_manager.switchTo(StateType::StartGame);
-	m_state_manager.switchTo(StateType::Game);
+	m_state_manager.createState(StateType::StartGame);
+	m_state_manager.createState(StateType::Game);
 	m_state_manager.switchTo(StateType::StartGame);
 }
 
