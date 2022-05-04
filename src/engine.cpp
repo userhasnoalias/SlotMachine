@@ -15,6 +15,12 @@ Engine::Engine() : m_window{ {1200u, 720u}, "Slot Machine" }, m_state_manager{ &
 	m_state_manager.switchTo(StateType::StartGame);
 }
 
+Engine& Engine::get()
+{
+	static Engine instance;
+	return instance;
+}
+
 void Engine::update()
 {
 	m_window.update();
@@ -34,9 +40,14 @@ void Engine::lateUpdate()
 	restartClock();
 }
 
-sf::Time Engine::getElapsed() const
+float Engine::getElapsed() const
 {
-	return m_clock.getElapsedTime();
+	return m_clock.getElapsedTime().asSeconds();
+}
+
+float Engine::getGameTimeSeconds() const
+{
+	return m_total_played_time;
 }
 
 Window* Engine::getWindow()
@@ -47,4 +58,5 @@ Window* Engine::getWindow()
 void Engine::restartClock()
 {
 	m_elapsed = m_clock.restart();
+	m_total_played_time += m_elapsed.asSeconds();
 }

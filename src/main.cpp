@@ -4,7 +4,7 @@
 
 int main()
 {
-	Engine engine;
+	Engine& engine = Engine::get();
 
 	while (!engine.getWindow()->isClosed())
 	{

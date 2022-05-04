@@ -10,9 +10,14 @@
 
 class Engine final
 {
+	Engine();
 public:
 
-	Engine();
+	Engine(const Engine&) = delete;
+
+	Engine& operator=(Engine) = delete;
+
+	static Engine& get();
 
 	void update();
 
@@ -20,7 +25,9 @@ public:
 
 	void lateUpdate();
 
-	sf::Time getElapsed() const;
+	float getElapsed() const;
+
+	float getGameTimeSeconds() const;
 
 	Window* getWindow();
 private:
@@ -30,6 +37,9 @@ private:
 	sf::Clock m_clock;
 	
 	sf::Time m_elapsed;
+
+	// In seconds
+	float m_total_played_time = 0.f;
 
 	SharedContext m_context;
 
