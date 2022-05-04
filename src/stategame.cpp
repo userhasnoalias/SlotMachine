@@ -6,12 +6,12 @@
 #include <iostream>
 
 StateGame::StateGame(StateManager* state_mgr) : BaseState{ state_mgr }, m_slot{ m_state_manager->getContext()->m_slot }
-{}
+{
+	m_transparent = true;
+}
 
 void StateGame::onCreate()
 {
-	m_transparent = true;
-
 	EventManager* ev_mgr = m_state_manager->getContext()->m_event_manager;
 	ev_mgr->addDelegate(StateType::Game, "LMB", this, &StateGame::onButtonClick);
 }
@@ -26,6 +26,7 @@ void StateGame::onDestroy()
 
 void StateGame::onActivation()
 {
+	m_slot->resetReelsSpeed(kMaxSpinSpeed);
 	std::cout << __FUNCTION__ << '\n';
 }
 
@@ -40,9 +41,7 @@ void StateGame::update(float dt)
 }
 
 void StateGame::draw()
-{
-
-}
+{}
 
 void StateGame::onButtonClick(EventDetails* details)
 {
@@ -54,7 +53,7 @@ void StateGame::onButtonClick(EventDetails* details)
 		if (shape->getGlobalBounds().contains(mouse_pos))
 		{
 			std::cout << "Clicked Stop!\n";
-			//m_state_manager->switchTo(StateType::EndGame);
+			m_state_manager->switchTo(StateType::PreEndGame);
 		}
 	}
 }

@@ -45,6 +45,8 @@ public:
 
 	void draw(Window* window);
 
+	void setSpeed(float speed);
+
 private:
 
 	Slot* m_slot;
@@ -60,4 +62,7 @@ private:
 	float m_target_speed = 500.f;
 
 	float m_acceleration = 250.f;
+
+	// Indicates if the current reel is not spinning or should stop spinning
+	bool m_stopped = true;
 };

@@ -41,6 +41,40 @@ void Slot::spinReels(float dt)
 	}
 }
 
+void Slot::spinCountReelsFromEnd(float dt, int32 count)
+{
+	if (count < 0 || count > m_reels.size())
+	{
+		assert(false && "Slot::spinCountReelsFromEnd count is less then 0 or greater than reels total count");
+		return;
+	}
+
+	int32 size = m_reels.size();
+	// Start from last element and go till 0 element if count = size
+	for (int32 i = size - 1; i > size - 1 - count; --i)
+	{
+		m_reels[i].update(dt);
+	}
+}
+
+void Slot::stopReels(float dt, int32 count /* = 1*/)
+{
+	for (int i = 0; i < count; ++i)
+	{
+		// TODO: magic number
+		m_reels[i].setSpeed(30.f);
+		m_reels[i].update(dt);
+	}
+}
+
+void Slot::resetReelsSpeed(float speed)
+{
+	for (auto& reel : m_reels)
+	{
+		reel.setSpeed(speed);
+	}
+}
+
 void Slot::draw()
 {
 	Window* window = m_context->m_window;

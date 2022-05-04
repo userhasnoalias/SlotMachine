@@ -7,13 +7,12 @@
 
 StateIdle::StateIdle(StateManager* state_mgr) : BaseState{ state_mgr }, m_slot{ m_state_manager->getContext(), 1 }
 {
+	m_transparent = true;
 	m_state_manager->getContext()->m_slot = &m_slot;
 }
 
 void StateIdle::onCreate()
 {
-	m_transparent = true;
-
 	EventManager* ev_mgr = m_state_manager->getContext()->m_event_manager;
 	ev_mgr->addDelegate(StateType::StartGame, "LMB", this, &StateIdle::onButtonClick);
 }

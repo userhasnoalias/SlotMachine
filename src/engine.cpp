@@ -12,6 +12,7 @@ Engine::Engine() : m_window{ {1200u, 720u}, "Slot Machine" }, m_state_manager{ &
 	// StartGame should go first as it creates Slot class on which other states rely on upon constructing
 	m_state_manager.createState(StateType::StartGame);
 	m_state_manager.createState(StateType::Game);
+	m_state_manager.createState(StateType::PreEndGame);
 	m_state_manager.switchTo(StateType::StartGame);
 }
 

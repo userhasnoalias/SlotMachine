@@ -60,3 +60,8 @@ void Reel::draw(Window* window)
 		}
 	}
 }
+
+void Reel::setSpeed(float speed)
+{
+	m_target_speed = speed;
+}

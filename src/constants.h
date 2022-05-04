@@ -11,6 +11,7 @@ constexpr inline int32 kIconWidth = 160;
 constexpr inline int32 kIconHeight = 160;
 constexpr inline int32 kIconCount = 8;
 constexpr inline float kSlotLoopY = 50.f;
+constexpr inline float kMaxSpinSpeed = 500.f;
 const sf::Vector2f kFirstReelPosition{ 100.f, 0.f };
 
 const sf::IntRect k7Rect{ 14, 24, kIconWidth, kIconHeight };

@@ -5,6 +5,7 @@
 #include "sharedcontext.h"
 #include "stategame.h"
 #include "stateidle.h"
+#include "statestop.h"
 // include every state.h
 #include "texturemanager.h"
 
@@ -17,9 +18,10 @@
 
 enum class StateType
 {
-	Global,
-	StartGame,
-	Game,
+	Global,		// StateIdle
+	StartGame,	// StateGame
+	Game,		// StateStop
+	PreEndGame,	// StateStop
 	EndGame,
 };
 

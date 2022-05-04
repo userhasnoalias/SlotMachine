@@ -155,6 +155,7 @@
     <ClCompile Include="stategame.cpp" />
     <ClCompile Include="stateidle.cpp" />
     <ClCompile Include="statemanager.cpp" />
+    <ClCompile Include="statestop.cpp" />
     <ClCompile Include="window.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -176,6 +177,7 @@
     <ClInclude Include="stategame.h" />
     <ClInclude Include="stateidle.h" />
     <ClInclude Include="statemanager.h" />
+    <ClInclude Include="statestop.h" />
     <ClInclude Include="texturemanager.h" />
     <ClInclude Include="window.h" />
   </ItemGroup>
