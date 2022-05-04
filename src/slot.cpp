@@ -37,7 +37,7 @@ void Slot::spinReels(float dt)
 {
 	for (auto& reel : m_reels)
 	{
-		reel.update(dt);
+		reel.spin(dt);
 	}
 }
 
@@ -53,7 +53,7 @@ void Slot::spinCountReelsFromEnd(float dt, int32 count)
 	// Start from last element and go till 0 element if count = size
 	for (int32 i = size - 1; i > size - 1 - count; --i)
 	{
-		m_reels[i].update(dt);
+		m_reels[i].spin(dt);
 	}
 }
 
@@ -63,7 +63,7 @@ void Slot::stopReels(float dt, int32 count /* = 1*/)
 	{
 		// TODO: magic number
 		m_reels[i].setSpeed(30.f);
-		m_reels[i].update(dt);
+		m_reels[i].stop(dt);
 	}
 }
 

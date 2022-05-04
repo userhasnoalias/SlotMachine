@@ -41,11 +41,16 @@ class Reel
 public:
 	Reel(Slot* owner, const sf::Vector2f& positon);
 
-	void update(float dt);
+	void spin(float dt);
+
+	void stop(float dt);
 
 	void draw(Window* window);
 
 	void setSpeed(float speed);
+protected:
+
+	void update(float dt);
 
 private:
 

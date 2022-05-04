@@ -18,13 +18,28 @@ Reel::Reel(Slot* owner, const sf::Vector2f& position) : m_slot{ owner }, m_posit
 	}
 }
 
+void Reel::spin(float dt)
+{
+	update(dt);
+}
+
+void Reel::stop(float dt)
+{
+	update(dt);
+}
+
 void Reel::update(float dt)
 {
 	m_speed = math::interpConstantTo(m_speed, m_target_speed, dt, m_acceleration);
-
+	
 	for (auto& icon : m_icons)
 	{
-		icon.second.y += m_speed * dt;
+		// This check should prevent reels from not working as expected in case of huge lag
+		// Value of 30 is just randomly chosen as max travelled distance per frame
+		if (m_speed * dt < 30.f)
+		{
+			icon.second.y += m_speed * dt;
+		}
 	}
 
 	// Icon with index 0 is the topmost icon
