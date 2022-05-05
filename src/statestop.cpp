@@ -32,7 +32,7 @@ void StateStop::update(float dt)
 {
 	if (m_count_reels_to_stop > m_slot->getReelsCount())
 	{
-		std::cout << "STOP!\n";
+		m_state_manager->switchTo(StateType::EndGame);
 		return;
 	}
 

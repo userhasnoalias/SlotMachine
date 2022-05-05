@@ -3,9 +3,10 @@
 #include "basestate.h"
 #include "fontmanager.h"
 #include "sharedcontext.h"
-#include "stategame.h"
 #include "stateidle.h"
+#include "stategame.h"
 #include "statestop.h"
+#include "statecalculatewin.h"
 // include every state.h
 #include "texturemanager.h"
 
@@ -22,7 +23,7 @@ enum class StateType
 	StartGame,	// StateGame
 	Game,		// StateStop
 	PreEndGame,	// StateStop
-	EndGame,
+	EndGame,	// StateCalculateWin
 };
 
 // Vector is used as stack for states, where the top stack element is current active state

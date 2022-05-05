@@ -152,6 +152,7 @@
     <ClCompile Include="main.cpp" />
     <ClCompile Include="reel.cpp" />
     <ClCompile Include="slot.cpp" />
+    <ClCompile Include="statecalculatewin.cpp" />
     <ClCompile Include="stategame.cpp" />
     <ClCompile Include="stateidle.cpp" />
     <ClCompile Include="statemanager.cpp" />
@@ -174,6 +175,7 @@
     <ClInclude Include="resourcemanager.h" />
     <ClInclude Include="sharedcontext.h" />
     <ClInclude Include="slot.h" />
+    <ClInclude Include="statecalculatewin.h" />
     <ClInclude Include="stategame.h" />
     <ClInclude Include="stateidle.h" />
     <ClInclude Include="statemanager.h" />

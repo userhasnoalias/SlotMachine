@@ -5,7 +5,7 @@ StateManager::StateManager(SharedContext* context) : m_context{ context }
 	registerState<StateIdle>(StateType::StartGame);
 	registerState<StateGame>(StateType::Game);
 	registerState<StateStop>(StateType::PreEndGame);
-	// register states
+	registerState<StateCalculateWin>(StateType::EndGame);
 }
 
 StateManager::~StateManager()
