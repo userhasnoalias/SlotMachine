@@ -24,7 +24,7 @@ void StateCalculateWin::onDestroy()
 
 void StateCalculateWin::onActivation()
 {
-	m_cur_time = Engine::get().getGameTimeSeconds();
+	m_activation_time = Engine::get().getGameTimeSeconds();
 
 	initializeText();
 
@@ -38,7 +38,7 @@ void StateCalculateWin::onDeactivation()
 
 void StateCalculateWin::update(float dt)
 {
-	if (Engine::get().getGameTimeSeconds() - m_cur_time >= m_show_text_time)
+	if (Engine::get().getGameTimeSeconds() - m_activation_time >= m_show_text_time)
 	{
 		m_draw = false;
 	}

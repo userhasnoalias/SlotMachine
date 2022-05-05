@@ -49,7 +49,7 @@ void StateIdle::onButtonClick(EventDetails* details)
 	{
 		if (shape->getGlobalBounds().contains(mouse_pos))
 		{
-			std::cout << "Clicked Start!\n";
+			// Remove calculate win state here so if player hit start winning text disappears
 			m_state_manager->addToRemove(StateType::EndGame);
 			m_state_manager->switchTo(StateType::Game);
 		}

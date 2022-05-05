@@ -33,4 +33,8 @@ public:
 private:
 
 	Slot* m_slot;
+
+	float m_activation_time = 0.f;
+
+	const float m_spinning_time = 5.f;
 };

@@ -24,6 +24,7 @@ void StateGame::onDestroy()
 
 void StateGame::onActivation()
 {
+	m_activation_time = Engine::get().getGameTimeSeconds();
 	m_slot->resetReelsSpeed(kMaxSpinSpeed);
 	std::cout << __FUNCTION__ << '\n';
 }
@@ -35,7 +36,14 @@ void StateGame::onDeactivation()
 
 void StateGame::update(float dt)
 {
-	m_slot->spinReels(dt);
+	if (Engine::get().getGameTimeSeconds() - m_activation_time < m_spinning_time)
+	{
+		m_slot->spinReels(dt);
+	}
+	else
+	{
+		m_state_manager->switchTo(StateType::PreEndGame);
+	}
 }
 
 void StateGame::draw()
