@@ -151,6 +151,7 @@ void Slot::createReels(int32 count)
 {
 	for (int32 i = 0; i < count; ++i)
 	{
-		m_reels.emplace_back(Reel(this, kFirstReelPosition * static_cast<float>(i + 1)));
+		// Shift each reel by icon width and preserve Y value as it should stay the same
+		m_reels.emplace_back(Reel(this, sf::Vector2f{kFirstReelPosition.x + kIconWidth * i, kFirstReelPosition.y}));
 	}
 }

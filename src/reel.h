@@ -27,6 +27,10 @@ struct ReelIconOrders
 		{
 		case 1:
 			return s_reel1;
+		case 2:
+			return s_reel2;
+		case 3:
+			return s_reel3;
 		default:
 			assert(false && "Reel is not initialized with icon order!");
 			return s_reel1;
@@ -34,6 +38,8 @@ struct ReelIconOrders
 	}
 
 	static const std::vector<std::string> s_reel1;
+	static const std::vector<std::string> s_reel2;
+	static const std::vector<std::string> s_reel3;
 };
 
 /* Class that represents each reel of current slot. It is implemented such way that icons we see on the screen
