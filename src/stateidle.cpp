@@ -8,6 +8,7 @@
 StateIdle::StateIdle(StateManager* state_mgr) : BaseState{ state_mgr }, m_slot{ m_state_manager->getContext(), kReelsCount }
 {
 	m_transparent = true;
+	m_allows_updating = true;
 	m_state_manager->getContext()->m_slot = &m_slot;
 }
 
@@ -21,19 +22,15 @@ void StateIdle::onDestroy()
 {
 	EventManager* ev_mgr = m_state_manager->getContext()->m_event_manager;
 	ev_mgr->removeDelegate(StateType::StartGame, "LMB");
-
-	std::cout << __FUNCTION__ << '\n';
 }
 
 void StateIdle::onActivation()
 {
-	m_active = true;
 	std::cout << __FUNCTION__ << '\n';
 }
 
 void StateIdle::onDeactivation()
 {
-	//m_active = false;
 	std::cout << __FUNCTION__ << '\n';
 }
 
@@ -41,9 +38,7 @@ void StateIdle::update([[maybe_unused]] float dt)
 {}
 
 void StateIdle::draw()
-{
-	m_state_manager->getContext()->m_slot->draw();
-}
+{}
 
 void StateIdle::onButtonClick(EventDetails* details)
 {
@@ -55,6 +50,7 @@ void StateIdle::onButtonClick(EventDetails* details)
 		if (shape->getGlobalBounds().contains(mouse_pos))
 		{
 			std::cout << "Clicked Start!\n";
+			m_state_manager->addToRemove(StateType::EndGame);
 			m_state_manager->switchTo(StateType::Game);
 		}
 	}

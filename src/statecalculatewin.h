@@ -24,5 +24,16 @@ public:
 
 private:
 
+	void initializeText();
+
 	Slot* m_slot;
+
+	sf::Text m_text;
+
+	// Current game time when this state has been activated
+	float m_cur_time = 0.f;
+
+	const float m_show_text_time = 3.f;
+
+	bool m_draw = true;
 };

@@ -19,6 +19,8 @@ public:
 
 	static Engine& get();
 
+	void beginPlay();
+
 	void update();
 
 	void render();

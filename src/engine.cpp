@@ -13,13 +13,18 @@ Engine::Engine() : m_window{ {1200u, 720u}, "Slot Machine" }, m_state_manager{ &
 	m_state_manager.createState(StateType::StartGame);
 	m_state_manager.createState(StateType::Game);
 	m_state_manager.createState(StateType::PreEndGame);
-	m_state_manager.switchTo(StateType::StartGame);
+	
 }
 
 Engine& Engine::get()
 {
 	static Engine instance;
 	return instance;
+}
+
+void Engine::beginPlay()
+{
+	m_state_manager.switchTo(StateType::StartGame);
 }
 
 void Engine::update()

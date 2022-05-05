@@ -20,8 +20,6 @@ void StateGame::onDestroy()
 {
 	EventManager* ev_mgr = m_state_manager->getContext()->m_event_manager;
 	ev_mgr->removeDelegate(StateType::Game, "LMB");
-
-	std::cout << __FUNCTION__ << '\n';
 }
 
 void StateGame::onActivation()
@@ -41,7 +39,9 @@ void StateGame::update(float dt)
 }
 
 void StateGame::draw()
-{}
+{
+	m_state_manager->getContext()->m_slot->draw();
+}
 
 void StateGame::onButtonClick(EventDetails* details)
 {

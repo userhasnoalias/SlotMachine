@@ -50,6 +50,9 @@ void Reel::stop(float dt)
 			m_remaining_dist = -1.f;
 			m_speed = 0.f;
 
+			// Fire an event that this reel stopped spinning. Reel number is calculated by its X coordinate that never changes.
+			// Reel number is actually X coordinate multiplier given upon creation plus 1 (because we count reels from 1).
+			// See Slot::createReels
 			m_slot->onReelStop(static_cast<int32>((m_icons[0].second.x - kFirstReelPosition.x) / kIconWidth) + 1);
 		}
 	}
@@ -93,6 +96,7 @@ void Reel::draw(Window* window)
 	const IconContainer* icon_sprites = m_slot->getIconSprites();
 	for (auto& icon : m_icons)
 	{
+		// TODO: проверять по Y какие элементы отрисовывать
 		auto it = icon_sprites->find(icon.first.data());
 		if (it != icon_sprites->end())
 		{

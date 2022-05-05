@@ -5,6 +5,7 @@
 int main()
 {
 	Engine& engine = Engine::get();
+	engine.beginPlay();
 
 	while (!engine.getWindow()->isClosed())
 	{
