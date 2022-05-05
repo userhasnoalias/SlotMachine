@@ -49,6 +49,8 @@ void Reel::stop(float dt)
 			align();
 			m_remaining_dist = -1.f;
 			m_speed = 0.f;
+
+			m_slot->onReelStop(static_cast<int32>((m_icons[0].second.x - kFirstReelPosition.x) / kIconWidth) + 1);
 		}
 	}
 }
@@ -101,9 +103,19 @@ void Reel::draw(Window* window)
 	}
 }
 
-void Reel::setSpeed(float speed)
+void Reel::setTargetSpeed(float speed)
 {
 	m_target_speed = speed;
+}
+
+float Reel::getCurrentSpeed() const
+{
+	return m_speed;
+}
+
+bool Reel::isStopped() const
+{
+	return m_speed <= 0.f;
 }
 
 void Reel::align()

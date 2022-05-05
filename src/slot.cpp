@@ -53,6 +53,9 @@ void Slot::spinCountReelsFromEnd(float dt, int32 count)
 	// Start from last element and go till 0 element if count = size
 	for (int32 i = size - 1; i > size - 1 - count; --i)
 	{
+		// Sets the target speed to speed when player pressed stop button
+		const float cur_speed = m_reels[i].getCurrentSpeed();
+		m_reels[i].setTargetSpeed(cur_speed);
 		m_reels[i].spin(dt);
 	}
 }
@@ -61,7 +64,7 @@ void Slot::stopReels(float dt, int32 count /* = 1*/)
 {
 	for (int i = 0; i < count; ++i)
 	{
-		m_reels[i].setSpeed(kMinSpinSpeed);
+		m_reels[i].setTargetSpeed(kMinSpinSpeed);
 		m_reels[i].stop(dt);
 	}
 }
@@ -70,7 +73,7 @@ void Slot::resetReelsSpeed(float speed)
 {
 	for (auto& reel : m_reels)
 	{
-		reel.setSpeed(speed);
+		reel.setTargetSpeed(speed);
 	}
 }
 
@@ -90,6 +93,11 @@ void Slot::draw()
 	}
 }
 
+int32 Slot::getReelsCount() const
+{
+	return m_reels.size();
+}
+
 const sf::RectangleShape* Slot::getButtonByName(const std::string& name)
 {
 	const sf::RectangleShape* shape = nullptr;
@@ -105,6 +113,16 @@ const sf::RectangleShape* Slot::getButtonByName(const std::string& name)
 const IconContainer* Slot::getIconSprites() const
 {
 	return &m_icons;
+}
+
+void Slot::onReelStop(int32 reel_number)
+{
+	if (m_on_reel_stop)
+	{
+		std::cout << __FUNCTION__ << '\n';
+		std::cout << "Reel num: " << reel_number << '\n';
+		m_on_reel_stop(reel_number);
+	}
 }
 
 void Slot::createButtons()

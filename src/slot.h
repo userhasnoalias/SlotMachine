@@ -4,6 +4,7 @@
 
 #include <SFML/Graphics.hpp>
 
+#include <functional>
 #include <string>
 #include <unordered_map>
 #include <vector>
@@ -15,8 +16,12 @@ class Reel;
 // This maps each fruit sprite to a string
 using IconContainer = std::unordered_map<std::string, sf::Sprite*>;
 
+using OnReelStopDelegate = std::function<void(int32)>;
+
 class Slot
 {
+	friend class Reel;
+
 public:
 
 	Slot(SharedContext* context, int32 reel_count);
@@ -36,11 +41,22 @@ public:
 
 	void draw();
 
+	int32 getReelsCount() const;
+
 	const sf::RectangleShape* getButtonByName(const std::string& name);
 
 	const IconContainer* getIconSprites() const;
 
+	// Bind to signle cast delegate
+	template<class T>
+	void bindOnReelStop(T* object, void(T::*func)(int32))
+	{
+		m_on_reel_stop = std::bind(func, object, std::placeholders::_1);
+	}
+
 private:
+	// Fires when each reel stops, reel_number starts from 1
+	void onReelStop(int32 reel_number);
 
 	void createButtons();
 
@@ -57,4 +73,6 @@ private:
 	IconContainer m_icons;
 
 	std::vector<Reel> m_reels;
+
+	OnReelStopDelegate m_on_reel_stop;
 };

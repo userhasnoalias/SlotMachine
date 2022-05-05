@@ -57,13 +57,16 @@ public:
 
 	void draw(Window* window);
 
-	void setSpeed(float speed);
+	void setTargetSpeed(float speed);
 
-	void align();
+	float getCurrentSpeed() const;
+
+	bool isStopped() const;
 protected:
 
-	void update(float dt);
+	void align();
 
+	void update(float dt);
 private:
 
 	Slot* m_slot;

@@ -1,6 +1,7 @@
 #pragma once
 
 #include "basestate.h"
+#include "commontypes.h"
 
 class Slot;
 
@@ -24,5 +25,9 @@ public:
 
 private:
 
+	void onReelStop(int32 reel_number);
+
 	Slot* m_slot;
+
+	int32 m_count_reels_to_stop = 1;
 };
