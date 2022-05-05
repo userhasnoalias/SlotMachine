@@ -13,7 +13,7 @@
 class Slot;
 class Window;
 
-// We use string to find appropriate sprite from Slot class icon container
+// We use string_view to find appropriate sprite from Slot class icon container
 using IconWheelContainer = std::vector<std::pair<std::string_view, sf::Vector2f>>;
 
 struct ReelIconOrders
@@ -36,6 +36,10 @@ struct ReelIconOrders
 	static const std::vector<std::string> s_reel1;
 };
 
+/* Class that represents each reel of current slot. It is implemented such way that icons we see on the screen
+** are always 1st, 2nd and 3rd elements of m_icons array. So there is always only one invisible element (with 0 index) 
+** above.
+*/
 class Reel
 {
 public:
@@ -48,6 +52,8 @@ public:
 	void draw(Window* window);
 
 	void setSpeed(float speed);
+
+	void align();
 protected:
 
 	void update(float dt);
@@ -68,6 +74,6 @@ private:
 
 	float m_acceleration = 250.f;
 
-	// Indicates if the current reel is not spinning or should stop spinning
-	bool m_stopped = true;
+	// Distance reel needs to move to align all icons
+	float m_remaining_dist = -1.f;
 };

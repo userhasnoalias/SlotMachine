@@ -61,8 +61,7 @@ void Slot::stopReels(float dt, int32 count /* = 1*/)
 {
 	for (int i = 0; i < count; ++i)
 	{
-		// TODO: magic number
-		m_reels[i].setSpeed(30.f);
+		m_reels[i].setSpeed(kMinSpinSpeed);
 		m_reels[i].stop(dt);
 	}
 }

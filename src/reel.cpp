@@ -6,7 +6,7 @@
 
 #include <iterator>
 
-const std::vector<std::string> ReelIconOrders::s_reel1{ "Orange", "Watermelon", "7", "Banana" };
+const std::vector<std::string> ReelIconOrders::s_reel1{ "7", "7", "7", "7" };
 
 Reel::Reel(Slot* owner, const sf::Vector2f& position) : m_slot{ owner }, m_position{ position }
 {
@@ -25,7 +25,30 @@ void Reel::spin(float dt)
 
 void Reel::stop(float dt)
 {
-	update(dt);
+	// If remaining distance is not set and speed is above zero, reels are slowing down
+	if (m_remaining_dist < 0.f && m_speed > 0.f)
+	{
+		update(dt);
+		if (m_speed <= m_target_speed)
+		{
+			// If reel reached its minimum speed calculate remaining spin distance by subtracting current y of 0 element
+			// from initial y, so after reaching this distance all icons are properly aligned (with very little inaccuracy)
+			m_remaining_dist = m_position.y - m_icons[0].second.y;
+		}
+	}
+	else if (m_remaining_dist > 0.f)
+	{
+		// If remaining distance is set move till we align all icons
+		update(dt);
+		m_remaining_dist -= m_speed * dt;
+		if (m_remaining_dist <= 0.f)
+		{
+			// Align every icon perfectly and reset speed and distance so the reel stops
+			align();
+			m_remaining_dist = -1.f;
+			m_speed = 0.f;
+		}
+	}
 }
 
 void Reel::update(float dt)
@@ -36,7 +59,7 @@ void Reel::update(float dt)
 	{
 		// This check should prevent reels from not working as expected in case of huge lag
 		// Value of 30 is just randomly chosen as max travelled distance per frame
-		if (m_speed * dt < 30.f)
+		if (m_speed * dt < kMaxMovementPerFrame)
 		{
 			icon.second.y += m_speed * dt;
 		}
@@ -79,4 +102,12 @@ void Reel::draw(Window* window)
 void Reel::setSpeed(float speed)
 {
 	m_target_speed = speed;
+}
+
+void Reel::align()
+{
+	for (int i = 0; i < m_icons.size(); ++i)
+	{
+		m_icons[i].second.y = m_position.y + kIconHeight * i;
+	}
 }

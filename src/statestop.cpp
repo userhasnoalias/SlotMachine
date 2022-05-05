@@ -28,6 +28,7 @@ void StateStop::onDeactivation()
 
 void StateStop::update(float dt)
 {
+	// TODO: magic number
 	m_slot->stopReels(dt, 1);
 }
 
