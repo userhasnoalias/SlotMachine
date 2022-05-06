@@ -27,11 +27,11 @@ const sf::Vector2f kFirstSlotTilePosition{ 130.f, 90.f };
 // First reel position is chosen such way that all icons are properly aligned
 const sf::Vector2f kFirstReelPosition{ 140.f, 100.f - kSlotTileHeight };
 
-const sf::IntRect k7Rect{ 14, 24, kIconWidth, kIconHeight };
+const sf::IntRect k7Rect{ 10, 18, kIconWidth, kIconHeight };
 const sf::IntRect kWatermelonRect{ 220, 25, kIconWidth, kIconHeight };
-const sf::IntRect kPlumRect{ 425, 25, kIconWidth, kIconHeight };
-const sf::IntRect kLemonRect{ 15, 230, kIconWidth, kIconHeight };
-const sf::IntRect kBananaRect{ 225, 230, kIconWidth, kIconHeight };
-const sf::IntRect kBigwinRect{ 428, 225,  kIconWidth, kIconHeight };
-const sf::IntRect kCherryRect{ 15, 425, kIconWidth, kIconHeight };
-const sf::IntRect kOrangeRect{ 425, 430, kIconWidth, kIconHeight };
+const sf::IntRect kPlumRect{ 430, 25, kIconWidth, kIconHeight };
+const sf::IntRect kLemonRect{ 10, 230, kIconWidth, kIconHeight };
+const sf::IntRect kBananaRect{ 220, 225, kIconWidth, kIconHeight };
+const sf::IntRect kBigwinRect{ 428, 230,  kIconWidth, kIconHeight };
+const sf::IntRect kCherryRect{ 12, 425, kIconWidth, kIconHeight };
+const sf::IntRect kOrangeRect{ 428, 425, kIconWidth, kIconHeight };
