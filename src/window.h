@@ -24,13 +24,9 @@ public:
 
 	void draw(sf::Drawable& drawable);
 
-	void toggleFullScreen(EventDetails* details);
-
 	void close(EventDetails* details);
 
 	bool isClosed() const;
-
-	bool isFullSreen() const;
 
 	sf::Vector2u size() const;
 
@@ -52,6 +48,4 @@ private:
 	std::string m_title;
 
 	bool m_closed = false;
-
-	bool m_fullscreen = false;
 };

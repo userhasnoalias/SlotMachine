@@ -7,7 +7,6 @@ Window::Window() : Window{{1200u, 720u}, "Slot Machine"}
 Window::Window(const sf::Vector2u& size, const std::string& title) : m_size{size}, m_title{title}, m_default_size{size}
 {
 	m_event_manager.addDelegate(StateType::Global, "CloseWindow", this, &Window::close);
-	m_event_manager.addDelegate(StateType::Global, "ToggleFullScreen", this, &Window::toggleFullScreen);
 
 	create();
 }
@@ -52,13 +51,6 @@ void Window::draw(sf::Drawable& drawable)
 	m_window.draw(drawable);
 }
 
-void Window::toggleFullScreen([[maybe_unused]] EventDetails* details)
-{
-	m_fullscreen = !m_fullscreen;
-	m_window.close();
-	create();
-}
-
 void Window::close([[maybe_unused]] EventDetails* details)
 {
 	m_closed = true;
@@ -67,11 +59,6 @@ void Window::close([[maybe_unused]] EventDetails* details)
 bool Window::isClosed() const
 {
 	return m_closed;
-}
-
-bool Window::isFullSreen() const
-{
-	return m_fullscreen;
 }
 
 sf::Vector2u Window::size() const
@@ -92,18 +79,7 @@ EventManager* Window::getEventManager()
 void Window::create()
 {
 	int32 not_resizable = sf::Style::Titlebar | sf::Style::Close;
-	int32 style = m_fullscreen ? sf::Style::Fullscreen : not_resizable;
-
-	if (style == not_resizable)
-	{
-		m_window.create({ m_default_size.x, m_default_size.y }, m_title, style);
-		m_size = m_default_size;
-	}
-	else if (style == sf::Style::Fullscreen)
-	{
-		sf::VideoMode mode = sf::VideoMode::getFullscreenModes().front();
-		m_window.create(mode, m_title, style);
-		m_size.x = mode.width;
-		m_size.y = mode.height;
-	}
+	
+	m_window.create({ m_default_size.x, m_default_size.y }, m_title, not_resizable);
+	m_size = m_default_size;
 }

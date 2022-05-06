@@ -6,7 +6,6 @@ EventManager::EventManager() : m_current_state{ StateType::Global }
 	std::vector<Binding*> bindings;
 	// Add all bindings here
 	bindings.emplace_back(new Binding("LMB", EventType::MousePressed, sf::Mouse::Left));
-	bindings.emplace_back(new Binding("ToggleFullScreen", EventType::KeyPressed, sf::Keyboard::F5));
 	bindings.emplace_back(new Binding("CloseWindow", EventType::WindowClosed));
 
 
