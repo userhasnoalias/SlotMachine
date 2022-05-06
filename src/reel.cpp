@@ -16,7 +16,7 @@ Reel::Reel(Slot* owner, const sf::Vector2f& position) : m_slot{ owner }, m_posit
 	m_icons.reserve(icon_order.size());
 	for (int32 i = 0; i < icon_order.size(); ++i)
 	{
-		m_icons.emplace_back(icon_order[i], sf::Vector2f{ m_position.x, m_position.y + (kIconHeight + kIconIndentY) * i });
+		m_icons.emplace_back(icon_order[i], sf::Vector2f{ m_position.x, m_position.y + (kSlotTileHeight + kIconIndentY) * i });
 	}
 }
 
@@ -84,7 +84,7 @@ void Reel::update(float dt)
 		m_icons.erase(it);
 
 		// New position of the first icon will be just above current first icon Y (plus offset)
-		sf::Vector2f new_pos{ m_icons[0].second.x, m_icons[0].second.y - kIconHeight - kIconIndentY };
+		sf::Vector2f new_pos{ m_icons[0].second.x, m_icons[0].second.y - kSlotTileHeight - kIconIndentY };
 		m_icons.insert(m_icons.begin(), { last_icon_name, new_pos });
 	}
 }
@@ -96,13 +96,17 @@ void Reel::draw(Window* window)
 	const IconContainer* icon_sprites = m_slot->getIconSprites();
 	for (auto& icon : m_icons)
 	{
-		// TODO: проверять по Y какие элементы отрисовывать
-		auto it = icon_sprites->find(icon.first.data());
-		if (it != icon_sprites->end())
+		// We need to draw only 4 icons at the same time for 3x3 field
+		if (icon.second.y > kFirstSlotTilePosition.y - (kIconHeight + kMaxMovementPerFrame)
+			&& icon.second.y < kFirstSlotTilePosition.y + kIconHeight + (kSlotTileHeight * kVisibleIcons))
 		{
-			sf::Sprite* sprite = it->second;
-			sprite->setPosition(icon.second);
-			window->draw(*sprite);
+			auto it = icon_sprites->find(icon.first.data());
+			if (it != icon_sprites->end())
+			{
+				sf::Sprite* sprite = it->second;
+				sprite->setPosition(icon.second);
+				window->draw(*sprite);
+			}
 		}
 	}
 }
@@ -139,6 +143,6 @@ void Reel::align()
 {
 	for (int i = 0; i < m_icons.size(); ++i)
 	{
-		m_icons[i].second.y = m_position.y + (kIconHeight + kIconIndentY) * i;
+		m_icons[i].second.y = m_position.y + (kSlotTileHeight + kIconIndentY) * i;
 	}
 }

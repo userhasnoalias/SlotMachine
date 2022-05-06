@@ -15,7 +15,9 @@ Slot::Slot(SharedContext* context, int32 reel_count) : m_context{ context }
 	texture_mgr->requireResource(IDR_ICONS);
 	texture_mgr->requireResource(IDR_SLOT);
 
-	m_background.setTexture(*texture_mgr->getResource(IDR_BG), true);
+	sf::IntRect rect{ 0, 0, 1200, 720 };
+	m_background.setTexture(*texture_mgr->getResource(IDR_BG));
+	m_background.setTextureRect(rect);
 	//sf::IntRect rect{ 0, 0, 180, 180 };
 	m_slot_tile.setTexture(*texture_mgr->getResource(IDR_SLOT), true);
 	//m_slot_tile.setTextureRect(rect);
@@ -85,7 +87,6 @@ void Slot::resetReelsSpeed(float speed)
 void Slot::draw()
 {
 	Window* window = m_context->m_window;
-	window->draw(m_background);
 
 	for (int32 i = 0; i < kVisibleIcons; ++i)
 	{
@@ -97,14 +98,17 @@ void Slot::draw()
 		}
 	}
 
-	for (auto& button : m_buttons)
-	{
-		button.draw();
-	}
-
 	for (auto& reel : m_reels)
 	{
 		reel.draw(m_context->m_window);
+	}
+
+	// Draw slot tiles and reels before background, so player do not see icons looping
+	window->draw(m_background);
+
+	for (auto& button : m_buttons)
+	{
+		button.draw();
 	}
 }
 

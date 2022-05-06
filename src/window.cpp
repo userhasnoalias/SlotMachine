@@ -1,7 +1,7 @@
 #include "statemanager.h"
 #include "window.h"
 
-Window::Window() : Window{{1024u, 1024u}, "Slot Machine"}
+Window::Window() : Window{{1200u, 720u}, "Slot Machine"}
 {}
 
 Window::Window(const sf::Vector2u& size, const std::string& title) : m_size{size}, m_title{title}, m_default_size{size}

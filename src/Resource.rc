@@ -58,7 +58,7 @@ IDR_CYR                 FONT                    "resources\\CyrilicOld.TTF"
 // TEXTURE
 //
 
-IDR_BG                  TEXTURE                 "resources\\background.jpg"
+IDR_BG                  TEXTURE                 "resources\\background.png"
 
 IDR_ICONS               TEXTURE                 "resources\\fruits.png"
 
