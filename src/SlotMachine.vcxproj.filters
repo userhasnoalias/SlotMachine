@@ -119,6 +119,9 @@
     <ClInclude Include="statecalculatewin.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
+    <ClInclude Include="vectormath.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Resource.rc">

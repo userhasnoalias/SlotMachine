@@ -1,7 +1,10 @@
 #include "engine.h"
 #include "statecalculatewin.h"
 #include "statemanager.h"
+#include "vectormath.h"
 
+#include <algorithm>
+#include <cmath>
 #include <iterator>
 
 StateCalculateWin::StateCalculateWin(StateManager* state_mgr) : BaseState{ state_mgr },
@@ -40,7 +43,7 @@ void StateCalculateWin::onDeactivation()
 	std::cout << __FUNCTION__ << '\n';
 }
 
-void StateCalculateWin::update(float dt)
+void StateCalculateWin::update([[maybe_unused]] float dt)
 {
 	if (Engine::get().getGameTimeSeconds() - m_activation_time >= m_show_text_time)
 	{
@@ -50,13 +53,13 @@ void StateCalculateWin::update(float dt)
 
 void StateCalculateWin::draw()
 {
-	if (m_draw && m_win)
+	if (/*m_draw && */m_win)
 	{
 		Window* window = m_state_manager->getContext()->m_window;
-		sf::Vector2u wnd_size = window->size();
-
-		m_text.setPosition(wnd_size.x / 2.f, wnd_size.y / 4.f);
-		window->draw(m_text);
+		
+		drawLines(window);
+		drawWinPositions(window);
+		drawWinText(window);
 	}
 }
 
@@ -85,7 +88,10 @@ bool StateCalculateWin::calculateWin()
 			|| icons[i + 1].first == "Bigwin" && icons[i].first == icons[i + 2].first
 			|| icons[i + 2].first == "Bigwin" && icons[i].first == icons[i + 1].first)
 		{
-			m_win_lines.insert(m_win_lines.end(), std::next(icons.begin(), i), std::next(icons.begin(), i + 3));
+			//m_win_lines.insert(m_win_lines.end(), std::next(icons.begin(), i), std::next(icons.begin(), i + 3));
+			m_win_lines.emplace_back(icons[i].second);
+			m_win_lines.emplace_back(icons[i + 1].second);
+			m_win_lines.emplace_back(icons[i + 2].second);
 		}
 	}
 
@@ -99,9 +105,9 @@ bool StateCalculateWin::calculateWin()
 		|| icons[7].first == "Bigwin" && icons[0].first == icons[2].first
 		|| icons[2].first == "Bigwin" && icons[0].first == icons[7].first)
 	{
-		m_win_lines.emplace_back(icons[0]);
-		m_win_lines.emplace_back(icons[7]);
-		m_win_lines.emplace_back(icons[2]);
+		m_win_lines.emplace_back(icons[0].second);
+		m_win_lines.emplace_back(icons[7].second);
+		m_win_lines.emplace_back(icons[2].second);
 	}
 
 	/*
@@ -114,21 +120,75 @@ bool StateCalculateWin::calculateWin()
 		|| icons[1].first == "Bigwin" && icons[6].first == icons[8].first
 		|| icons[8].first == "Bigwin" && icons[6].first == icons[1].first)
 	{
-		m_win_lines.emplace_back(icons[6]);
-		m_win_lines.emplace_back(icons[1]);
-		m_win_lines.emplace_back(icons[8]);
+		m_win_lines.emplace_back(icons[6].second);
+		m_win_lines.emplace_back(icons[1].second);
+		m_win_lines.emplace_back(icons[8].second);
 	}
 
-	for (int32 i = 0; i < m_win_lines.size(); ++i)
+	for (auto& value : m_win_lines)
 	{
-		if (i != 0 && i % 3 == 0)
+		auto it = std::find(m_win_positions.begin(), m_win_positions.end(), value);
+		if (it == m_win_positions.end())
 		{
-			std::cout << '\n';
+			m_win_positions.emplace_back(value);
 		}
-		std::cout << m_win_lines[i].first.data() << ' ';
 	}
+
+	//for (int32 i = 0; i < m_win_lines.size(); ++i)
+	//{
+	//	if (i != 0 && i % 3 == 0)
+	//	{
+	//		std::cout << '\n';
+	//	}
+	//	std::cout << m_win_lines[i].first.data() << ' ';
+	//}
 
 	return !m_win_lines.empty();
+}
+
+void StateCalculateWin::drawWinPositions(Window* window)
+{
+	constexpr float shape_size = 25.f;
+
+	for (auto& position : m_win_positions)
+	{
+		sf::RectangleShape rect{ sf::Vector2f{shape_size, shape_size} };
+		rect.setOrigin(sf::Vector2f{ shape_size / 2.f, shape_size / 2.f }); // Origin to center
+		rect.setFillColor(sf::Color{ 255, 215, 0 }); // Gold
+		rect.setPosition(sf::Vector2f{ position.x + kIconWidth / 2, position.y + kIconHeight / 2 });
+		window->draw(rect);
+	}
+}
+
+void StateCalculateWin::drawLines(Window* window)
+{
+	constexpr float line_thickness = 8.f;
+
+	for (int32 i = 0; i < m_win_lines.size() - 1; ++i)
+	{
+		// We do not draw at 2, 5, and 8 indicies
+		if (i % kReelsCount == kReelsCount - 1) { continue; }
+
+		sf::Vector2f dist = m_win_lines[i + 1] - m_win_lines[i];
+		const float length = vec::length(dist); // Save distance vector length before normalizing
+		
+		vec::normalize(dist);
+		const float angle = std::atan2f(dist.y, dist.x) * 180.f / PI;
+
+		sf::RectangleShape rect{ sf::Vector2f{ length, line_thickness } };
+		rect.setOrigin(sf::Vector2f{ 0.f, line_thickness / 2.f });
+		rect.setFillColor(sf::Color{ 255, 215, 0 }); // Gold
+		rect.setPosition(m_win_lines[i].x + kIconWidth / 2, m_win_lines[i].y + kIconHeight / 2); // Center of icon
+		rect.setRotation(angle);
+		window->draw(rect);
+	}
+}
+
+void StateCalculateWin::drawWinText(Window* window)
+{
+	sf::Vector2u wnd_size = window->size();
+	m_text.setPosition(wnd_size.x / 2.f, wnd_size.y / 4.f);
+	window->draw(m_text);
 }
 
 std::string StateCalculateWin::chooseWinningString(int32 string_num)

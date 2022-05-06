@@ -5,6 +5,7 @@
 #include <SFML/Graphics/Rect.hpp>
 
 constexpr inline float kSmallNumber = 1.e-6f;
+constexpr inline float PI = 3.141592653f;
 
 constexpr inline int32 kReelsCount = 3;
 // Count of visible icons we can see on screen (per reel)

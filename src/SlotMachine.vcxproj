@@ -181,6 +181,7 @@
     <ClInclude Include="statemanager.h" />
     <ClInclude Include="statestop.h" />
     <ClInclude Include="texturemanager.h" />
+    <ClInclude Include="vectormath.h" />
     <ClInclude Include="window.h" />
   </ItemGroup>
   <ItemGroup>
