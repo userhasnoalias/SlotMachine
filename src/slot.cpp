@@ -159,8 +159,6 @@ void Slot::onReelStop(int32 reel_number)
 {
 	if (m_on_reel_stop)
 	{
-		std::cout << __FUNCTION__ << '\n';
-		std::cout << "Reel num: " << reel_number << '\n';
 		m_on_reel_stop(reel_number);
 	}
 }

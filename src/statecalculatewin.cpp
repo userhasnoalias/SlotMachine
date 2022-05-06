@@ -17,12 +17,10 @@ void StateCalculateWin::onCreate()
 {
 	FontManager* font_mgr = m_state_manager->getContext()->m_font_manager;
 	font_mgr->requireResource(IDR_CYR);
-	std::cout << __FUNCTION__ << '\n';
 }
 
 void StateCalculateWin::onDestroy()
 {
-	std::cout << __FUNCTION__ << '\n';
 	FontManager* font_mgr = m_state_manager->getContext()->m_font_manager;
 	font_mgr->releaseResource(IDR_CYR);
 }
@@ -39,9 +37,7 @@ void StateCalculateWin::onActivation()
 }
 
 void StateCalculateWin::onDeactivation()
-{
-	std::cout << __FUNCTION__ << '\n';
-}
+{}
 
 void StateCalculateWin::update([[maybe_unused]] float dt)
 {

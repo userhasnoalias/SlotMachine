@@ -1,8 +1,6 @@
 #include "statemanager.h"
 #include "statestop.h"
 
-#include <iostream>
-
 StateStop::StateStop(StateManager* state_mgr) : BaseState{state_mgr}, m_slot{m_state_manager->getContext()->m_slot}
 {
 	m_transparent = true;
@@ -19,13 +17,11 @@ void StateStop::onActivation()
 {
 	m_active = true;
 	m_count_reels_to_stop = 1;
-	std::cout << __FUNCTION__ << '\n';
 }
 
 void StateStop::onDeactivation()
 {
 	m_active = false;
-	std::cout << __FUNCTION__ << '\n';
 }
 
 void StateStop::update(float dt)

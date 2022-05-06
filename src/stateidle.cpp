@@ -3,8 +3,6 @@
 #include "statemanager.h"
 #include "stateidle.h"
 
-#include <iostream>
-
 StateIdle::StateIdle(StateManager* state_mgr) : BaseState{ state_mgr }, m_slot{ m_state_manager->getContext(), kReelsCount }
 {
 	m_transparent = true;
@@ -25,14 +23,10 @@ void StateIdle::onDestroy()
 }
 
 void StateIdle::onActivation()
-{
-	std::cout << __FUNCTION__ << '\n';
-}
+{}
 
 void StateIdle::onDeactivation()
-{
-	std::cout << __FUNCTION__ << '\n';
-}
+{}
 
 void StateIdle::update([[maybe_unused]] float dt)
 {}
