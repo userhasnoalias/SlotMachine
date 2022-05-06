@@ -39,4 +39,10 @@ namespace math
 		return die(mt);
 	}
 
+	template<class T>
+	void shuffleVec(std::vector<T>& vec)
+	{
+		static std::mt19937 mt{ std::random_device{}() };
+		std::shuffle(vec.begin(), vec.end(), mt);
+	}
 }

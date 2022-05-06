@@ -6,13 +6,23 @@
 
 #include <iterator>
 
-const std::vector<std::string> ReelIconOrders::s_reel1{ "7", "7", "7", "Cherry" };
-const std::vector<std::string> ReelIconOrders::s_reel2{ "7", "7", "7", "7" };
-const std::vector<std::string> ReelIconOrders::s_reel3{ "7", "7", "7", "7" };
+std::vector<std::string> ReelIconOrders::s_reel1{ "Lemon", "Lemon", "Lemon", "Lemon", "Lemon", "Watermelon", "Watermelon", 
+	"Watermelon", "Watermelon", "Watermelon", "Orange", "Orange", "Orange", "Orange", "Banana", "Bigwin", "Banana", "Banana", "Plum",
+	"Plum", "Plum", "Cherry", "Cherry", "Bigwin", "7", "7", "Bigwin"};
+
+std::vector<std::string> ReelIconOrders::s_reel2{ "Lemon", "Lemon", "Lemon", "Lemon", "Lemon", "Lemon", "Watermelon",
+	"Watermelon", "Watermelon", "Bigwin", "Orange", "Orange", "Bigwin", "Banana", "Banana", "Banana", "Bigwin", "Banana", "Plum",
+	"Plum", "Bigwin", "Cherry", "Cherry", "Cherry", "7", "7", "Bigwin" };
+
+std::vector<std::string> ReelIconOrders::s_reel3{ "Lemon", "Lemon", "Lemon", "Lemon", "Lemon", "Lemon", "Watermelon",
+	"Watermelon", "Watermelon", "Watermelon", "Orange", "Orange", "Orange", "Orange", "Banana", "Banana", "Banana", "Plum", "Bigwin",
+	"Plum", "Plum", "Cherry", "Cherry", "7", "7", "7", "Bigwin" };
 
 Reel::Reel(Slot* owner, const sf::Vector2f& position) : m_slot{ owner }, m_position{ position }
 {
-	const std::vector<std::string>& icon_order = ReelIconOrders::getIconOrderForReel();
+	std::vector<std::string>& icon_order = ReelIconOrders::getIconOrderForReel();
+	math::shuffleVec(icon_order);
+
 	m_icons.reserve(icon_order.size());
 	for (int32 i = 0; i < icon_order.size(); ++i)
 	{

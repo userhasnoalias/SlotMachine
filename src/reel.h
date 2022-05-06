@@ -19,7 +19,7 @@ using IconWheelContainer = std::vector<std::pair<std::string_view, sf::Vector2f>
 struct ReelIconOrders
 {
 	// Get unique icon order for each reel
-	static const std::vector<std::string>& getIconOrderForReel()
+	static std::vector<std::string>& getIconOrderForReel()
 	{
 		static int32 s_reel_number = 0;
 		++s_reel_number;
@@ -37,9 +37,9 @@ struct ReelIconOrders
 		}
 	}
 
-	static const std::vector<std::string> s_reel1;
-	static const std::vector<std::string> s_reel2;
-	static const std::vector<std::string> s_reel3;
+	static std::vector<std::string> s_reel1;
+	static std::vector<std::string> s_reel2;
+	static std::vector<std::string> s_reel3;
 };
 
 /* Class that represents each reel of current slot. It is implemented such way that icons we see on the screen
