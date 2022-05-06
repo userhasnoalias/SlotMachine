@@ -134,15 +134,6 @@ bool StateCalculateWin::calculateWin()
 		}
 	}
 
-	//for (int32 i = 0; i < m_win_lines.size(); ++i)
-	//{
-	//	if (i != 0 && i % 3 == 0)
-	//	{
-	//		std::cout << '\n';
-	//	}
-	//	std::cout << m_win_lines[i].first.data() << ' ';
-	//}
-
 	return !m_win_lines.empty();
 }
 

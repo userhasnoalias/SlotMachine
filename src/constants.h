@@ -13,6 +13,7 @@ constexpr inline int32 kVisibleIcons = 3;
 constexpr inline int32 kButtonsCount = 2;
 constexpr inline int32 kIconWidth = 160;
 constexpr inline int32 kIconHeight = 160;
+constexpr inline int32 kIconIndent = 20;
 constexpr inline int32 kIconCount = 8;
 constexpr inline float kSlotLoopY = -10.f;
 constexpr inline float kMaxSpinSpeed = 500.f;
