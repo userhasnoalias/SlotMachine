@@ -16,7 +16,7 @@ Reel::Reel(Slot* owner, const sf::Vector2f& position) : m_slot{ owner }, m_posit
 	m_icons.reserve(icon_order.size());
 	for (int32 i = 0; i < icon_order.size(); ++i)
 	{
-		m_icons.emplace_back(icon_order[i], sf::Vector2f{ m_position.x, m_position.y + kIconHeight * i });
+		m_icons.emplace_back(icon_order[i], sf::Vector2f{ m_position.x, m_position.y + (kIconHeight + kIconIndentY) * i });
 	}
 }
 
@@ -83,8 +83,8 @@ void Reel::update(float dt)
 		std::advance(it, m_icons.size() - 1);
 		m_icons.erase(it);
 
-		// New position of the first icon will be just above current first icon Y
-		sf::Vector2f new_pos{ m_icons[0].second.x, m_icons[0].second.y - kIconHeight };
+		// New position of the first icon will be just above current first icon Y (plus offset)
+		sf::Vector2f new_pos{ m_icons[0].second.x, m_icons[0].second.y - kIconHeight - kIconIndentY };
 		m_icons.insert(m_icons.begin(), { last_icon_name, new_pos });
 	}
 }
@@ -139,6 +139,6 @@ void Reel::align()
 {
 	for (int i = 0; i < m_icons.size(); ++i)
 	{
-		m_icons[i].second.y = m_position.y + kIconHeight * i;
+		m_icons[i].second.y = m_position.y + (kIconHeight + kIconIndentY) * i;
 	}
 }

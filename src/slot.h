@@ -71,6 +71,8 @@ private:
 
 	sf::Sprite m_background;
 
+	sf::Sprite m_slot_tile;
+
 	std::vector<Button> m_buttons;
 
 	IconContainer m_icons;

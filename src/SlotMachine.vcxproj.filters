@@ -140,6 +140,9 @@
     <Image Include="resources\fruits.png">
       <Filter>Файлы ресурсов</Filter>
     </Image>
+    <Image Include="resources\slot_machine.png">
+      <Filter>Файлы ресурсов</Filter>
+    </Image>
   </ItemGroup>
   <ItemGroup>
     <None Include="texture1.bin">

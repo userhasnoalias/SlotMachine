@@ -193,6 +193,7 @@
   <ItemGroup>
     <Image Include="resources\background.jpg" />
     <Image Include="resources\fruits.png" />
+    <Image Include="resources\slot_machine.png" />
   </ItemGroup>
   <ItemGroup>
     <None Include="texture1.bin" />

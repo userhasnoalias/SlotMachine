@@ -11,7 +11,7 @@ class TextureManager : public ResourceManager<TextureManager, sf::Texture>
 {
 public:
 
-	TextureManager() : ResourceManager{ {IDR_BG, IDR_ICONS}, "TEXTURE" }
+	TextureManager() : ResourceManager{ {IDR_BG, IDR_ICONS, IDR_SLOT}, "TEXTURE" }
 	{}
 
 	sf::Texture* load(ResInfo resource)

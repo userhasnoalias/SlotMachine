@@ -13,8 +13,12 @@ Slot::Slot(SharedContext* context, int32 reel_count) : m_context{ context }
 	TextureManager* texture_mgr = m_context->m_texture_manager;
 	texture_mgr->requireResource(IDR_BG);
 	texture_mgr->requireResource(IDR_ICONS);
+	texture_mgr->requireResource(IDR_SLOT);
 
 	m_background.setTexture(*texture_mgr->getResource(IDR_BG), true);
+	//sf::IntRect rect{ 0, 0, 180, 180 };
+	m_slot_tile.setTexture(*texture_mgr->getResource(IDR_SLOT), true);
+	//m_slot_tile.setTextureRect(rect);
 
 	createButtons();
 	createIconSprites();
@@ -31,6 +35,7 @@ Slot::~Slot()
 	TextureManager* texture_mgr = m_context->m_texture_manager;
 	texture_mgr->releaseResource(IDR_BG);
 	texture_mgr->releaseResource(IDR_ICONS);
+	texture_mgr->releaseResource(IDR_SLOT);
 }
 
 void Slot::spinReels(float dt)
@@ -81,6 +86,16 @@ void Slot::draw()
 {
 	Window* window = m_context->m_window;
 	window->draw(m_background);
+
+	for (int32 i = 0; i < kVisibleIcons; ++i)
+	{
+		for (int32 j = 0; j < kReelsCount; ++j)
+		{
+			m_slot_tile.setPosition(kFirstSlotTilePosition.x + kSlotTileWidth * j, 
+				kFirstSlotTilePosition.y + kSlotTileWidth * i);
+			window->draw(m_slot_tile);
+		}
+	}
 
 	for (auto& button : m_buttons)
 	{
@@ -193,7 +208,7 @@ void Slot::createReels(int32 count)
 {
 	for (int32 i = 0; i < count; ++i)
 	{
-		// Shift each reel by icon width and preserve Y value as it should stay the same
-		m_reels.emplace_back(Reel(this, sf::Vector2f{kFirstReelPosition.x + (kIconWidth + kIconIndent) * i, kFirstReelPosition.y}));
+		// Shift each reel
+		m_reels.emplace_back(Reel(this, sf::Vector2f{kFirstReelPosition.x + (kIconWidth + kIconIndentX) * i, kFirstReelPosition.y}));
 	}
 }
