@@ -35,7 +35,7 @@ void Reel::stop(float dt)
 		{
 			// If reel reached its minimum speed calculate remaining spin distance by subtracting current y of 0 element
 			// from initial y, so after reaching this distance all icons are properly aligned (with very little inaccuracy)
-			m_remaining_dist = m_position.y - m_icons[0].second.y;
+			m_remaining_dist = m_position.y - m_icons[0].second.y + math::getRandomNumber(1, 3) * kSlotTileHeight;
 		}
 	}
 	else if (m_remaining_dist > 0.f)

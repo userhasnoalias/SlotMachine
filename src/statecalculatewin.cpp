@@ -53,7 +53,7 @@ void StateCalculateWin::update([[maybe_unused]] float dt)
 
 void StateCalculateWin::draw()
 {
-	if (/*m_draw && */m_win)
+	if (m_draw && m_win)
 	{
 		Window* window = m_state_manager->getContext()->m_window;
 		

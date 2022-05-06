@@ -20,7 +20,7 @@ constexpr inline int32 kIconIndentY = 0;
 constexpr inline int32 kIconCount = 8;
 constexpr inline float kSlotLoopY = -10.f;
 constexpr inline float kMaxSpinSpeed = 500.f;
-constexpr inline float kMinSpinSpeed = 80.f;
+constexpr inline float kMinSpinSpeed = 140.f;
 constexpr inline float kMaxMovementPerFrame = 30.f;
 
 const sf::Vector2f kFirstSlotTilePosition{ 130.f, 90.f };

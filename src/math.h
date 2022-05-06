@@ -2,6 +2,8 @@
 
 #include "constants.h"
 
+#include <random>
+
 namespace math
 {
 	template<class T>
@@ -29,4 +31,12 @@ namespace math
 		const float step = dt * speed;
 		return start + clamp(dist, -step, step);
 	}
+
+	inline int32 getRandomNumber(int32 min, int32 max)
+	{
+		static std::mt19937 mt{ std::random_device{}() };
+		std::uniform_int_distribution die{ min, max };
+		return die(mt);
+	}
+
 }

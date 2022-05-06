@@ -1,6 +1,7 @@
 #include "button.h"
 #include "buttoninfo.h"
 #include "constants.h"
+#include "math.h"
 #include "reel.h"
 #include "sharedcontext.h"
 #include "slot.h"
@@ -15,12 +16,8 @@ Slot::Slot(SharedContext* context, int32 reel_count) : m_context{ context }
 	texture_mgr->requireResource(IDR_ICONS);
 	texture_mgr->requireResource(IDR_SLOT);
 
-	sf::IntRect rect{ 0, 0, 1200, 720 };
-	m_background.setTexture(*texture_mgr->getResource(IDR_BG));
-	m_background.setTextureRect(rect);
-	//sf::IntRect rect{ 0, 0, 180, 180 };
+	m_background.setTexture(*texture_mgr->getResource(IDR_BG), true);
 	m_slot_tile.setTexture(*texture_mgr->getResource(IDR_SLOT), true);
-	//m_slot_tile.setTextureRect(rect);
 
 	createButtons();
 	createIconSprites();
@@ -80,7 +77,7 @@ void Slot::resetReelsSpeed(float speed)
 {
 	for (auto& reel : m_reels)
 	{
-		reel.setTargetSpeed(speed);
+		reel.setTargetSpeed(speed + 75.f * math::getRandomNumber(0, 3));
 	}
 }
 
