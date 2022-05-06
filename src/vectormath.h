@@ -9,7 +9,7 @@
 
 namespace vec
 {
-	float invSqrt(float number)
+	inline float invSqrt(float number)
 	{
 		union 
 		{
@@ -24,12 +24,12 @@ namespace vec
 		return un.f;
 	}
 
-	float length(const sf::Vector2f& v)
+	inline float length(const sf::Vector2f& v)
 	{
 		return std::sqrtf(v.x * v.x + v.y * v.y);
 	}
 
-	bool normalize(sf::Vector2f& vec, float tolerance = std::numeric_limits<float>::epsilon())
+	inline bool normalize(sf::Vector2f& vec, float tolerance = std::numeric_limits<float>::epsilon())
 	{
 		const float square_sum = vec.x * vec.x + vec.y * vec.y;
 		if (square_sum > tolerance)
