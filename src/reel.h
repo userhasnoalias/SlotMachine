@@ -59,6 +59,8 @@ public:
 
 	void setTargetSpeed(float speed);
 
+	IconWheelContainer getVisibleIcons() const;
+
 	float getCurrentSpeed() const;
 
 	bool isStopped() const;

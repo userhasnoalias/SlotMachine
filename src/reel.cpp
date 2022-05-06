@@ -7,8 +7,8 @@
 #include <iterator>
 
 const std::vector<std::string> ReelIconOrders::s_reel1{ "7", "7", "7", "7" };
-const std::vector<std::string> ReelIconOrders::s_reel2{ "Watermelon", "Watermelon", "Watermelon", "Watermelon" };
-const std::vector<std::string> ReelIconOrders::s_reel3{ "Orange", "Orange", "Orange", "Orange" };
+const std::vector<std::string> ReelIconOrders::s_reel2{ "Bigwin", "Orange", "Lemon", "Bigwin" };
+const std::vector<std::string> ReelIconOrders::s_reel3{ "7", "7", "7", "7" };
 
 Reel::Reel(Slot* owner, const sf::Vector2f& position) : m_slot{ owner }, m_position{ position }
 {
@@ -110,6 +110,19 @@ void Reel::draw(Window* window)
 void Reel::setTargetSpeed(float speed)
 {
 	m_target_speed = speed;
+}
+
+IconWheelContainer Reel::getVisibleIcons() const
+{
+	// Visible icons are always at positions 1, 2, and 3
+	IconWheelContainer result;
+	for (int32 i = 1; i <= kVisibleIcons; ++i)
+	{
+		result.emplace_back(m_icons[i]);
+	}
+
+	// should invoke move constructor
+	return result;
 }
 
 float Reel::getCurrentSpeed() const

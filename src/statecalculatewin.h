@@ -1,8 +1,12 @@
 #pragma once
 
 #include "basestate.h"
+#include "reel.h"
+
+#include <unordered_set>
 
 class Slot;
+
 
 class StateCalculateWin : public BaseState
 {
@@ -22,12 +26,15 @@ public:
 
 	virtual void draw() override;
 
+	bool calculateWin();
 private:
 
-	void initializeText();
+	std::string chooseWinningString(int32 string_num);
+
+	void initializeText(const std::string& str);
 
 	Slot* m_slot;
-
+	// Winning text
 	sf::Text m_text;
 
 	// Game time when this state has been activated
@@ -35,5 +42,11 @@ private:
 
 	const float m_show_text_time = 3.f;
 
+	IconWheelContainer m_win_lines;
+
+	// This is set to false when winning message is shown more than m_show_text_time seconds
 	bool m_draw = true;
+
+	// This will be true if there is at least 1 winning line
+	bool m_win = false;
 };

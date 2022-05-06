@@ -2,6 +2,8 @@
 #include "statecalculatewin.h"
 #include "statemanager.h"
 
+#include <iterator>
+
 StateCalculateWin::StateCalculateWin(StateManager* state_mgr) : BaseState{ state_mgr },
 	m_slot{ m_state_manager->getContext()->m_slot }
 {
@@ -26,7 +28,9 @@ void StateCalculateWin::onActivation()
 {
 	m_activation_time = Engine::get().getGameTimeSeconds();
 
-	initializeText();
+	m_win = calculateWin();
+	std::string winning_str = chooseWinningString(m_win_lines.size() / 3);
+	initializeText(winning_str);
 
 	m_state_manager->switchTo(StateType::StartGame);
 }
@@ -46,7 +50,7 @@ void StateCalculateWin::update(float dt)
 
 void StateCalculateWin::draw()
 {
-	if (m_draw)
+	if (m_draw && m_win)
 	{
 		Window* window = m_state_manager->getContext()->m_window;
 		sf::Vector2u wnd_size = window->size();
@@ -56,12 +60,111 @@ void StateCalculateWin::draw()
 	}
 }
 
-void StateCalculateWin::initializeText()
+// Hardcoded for 3x3 field
+bool StateCalculateWin::calculateWin()
+{
+	if (kReelsCount != 3 || kVisibleIcons != 3)
+	{
+		assert(false && "Current implementation only supports 3x3 field!\n");
+		return false;
+	}
+
+	auto icons = m_slot->getAllVisibleIcons();
+
+	/*	Indicies for visible icons look like this:
+	*	0---1---2
+	*	3---4---5
+	*	6---7---8
+	*/
+
+	// Bigwin acts as wild symbol
+	for (int32 i = 0; i < kReelsCount * kVisibleIcons; i += 3)
+	{
+		if (icons[i].first == icons[i + 1].first && icons[i].first == icons[i + 2].first
+			|| icons[i].first == "Bigwin" && icons[i + 1].first == icons[i + 2].first
+			|| icons[i + 1].first == "Bigwin" && icons[i].first == icons[i + 2].first
+			|| icons[i + 2].first == "Bigwin" && icons[i].first == icons[i + 1].first)
+		{
+			m_win_lines.insert(m_win_lines.end(), std::next(icons.begin(), i), std::next(icons.begin(), i + 3));
+		}
+	}
+
+	/*	
+	*	0---|---2
+	*	|---|---|
+	*	|---7---|
+	*/
+	if (icons[0].first == icons[7].first && icons[0].first == icons[2].first
+		|| icons[0].first == "Bigwin" && icons[7].first == icons[2].first
+		|| icons[7].first == "Bigwin" && icons[0].first == icons[2].first
+		|| icons[2].first == "Bigwin" && icons[0].first == icons[7].first)
+	{
+		m_win_lines.emplace_back(icons[0]);
+		m_win_lines.emplace_back(icons[7]);
+		m_win_lines.emplace_back(icons[2]);
+	}
+
+	/*
+	*	|---1---|
+	*	|---|---|
+	*	6---|---8
+	*/
+	if (icons[6].first == icons[1].first && icons[6].first == icons[8].first
+		|| icons[6].first == "Bigwin" && icons[1].first == icons[8].first
+		|| icons[1].first == "Bigwin" && icons[6].first == icons[8].first
+		|| icons[8].first == "Bigwin" && icons[6].first == icons[1].first)
+	{
+		m_win_lines.emplace_back(icons[6]);
+		m_win_lines.emplace_back(icons[1]);
+		m_win_lines.emplace_back(icons[8]);
+	}
+
+	for (int32 i = 0; i < m_win_lines.size(); ++i)
+	{
+		if (i != 0 && i % 3 == 0)
+		{
+			std::cout << '\n';
+		}
+		std::cout << m_win_lines[i].first.data() << ' ';
+	}
+
+	return !m_win_lines.empty();
+}
+
+std::string StateCalculateWin::chooseWinningString(int32 string_num)
+{
+	std::string result;
+	switch (string_num)
+	{
+	case 1:
+		result = "Win!";
+		break;
+	case 2:
+		result = "Big Win!";
+		break;
+	case 3:
+		result = "Huge Win!";
+		break;
+	case 4:
+		result = "Mega Win!";
+		break;
+	case 5:
+		result = "Ultra Win!";
+		break;
+	default:
+		result = "Error! Slot broken!";
+	}
+
+	return result;
+}
+
+void StateCalculateWin::initializeText(const std::string& str)
 {
 	FontManager* font_mgr = m_state_manager->getContext()->m_font_manager;
 	m_text.setFont(*font_mgr->getResource(IDR_CYR));
-	m_text.setString("  You've won! Congrats!\nDo you wish to play again?");
+	m_text.setString(str);
 	m_text.setCharacterSize(60);
+	m_text.setStyle(sf::Text::Bold);
 	m_text.setFillColor(sf::Color::Magenta);
 	sf::FloatRect rect = m_text.getLocalBounds();
 	m_text.setOrigin(rect.left + rect.width / 2.f, rect.top + rect.height / 2.f);

@@ -1,6 +1,7 @@
 #pragma once
 
 #include "constants.h"
+#include "reel.h"
 
 #include <SFML/Graphics.hpp>
 
@@ -46,6 +47,8 @@ public:
 	const sf::RectangleShape* getButtonByName(const std::string& name);
 
 	const IconContainer* getIconSprites() const;
+
+	IconWheelContainer getAllVisibleIcons() const;
 
 	// Bind to signle cast delegate
 	template<class T>

@@ -7,6 +7,8 @@
 constexpr inline float kSmallNumber = 1.e-6f;
 
 constexpr inline int32 kReelsCount = 3;
+// Count of visible icons we can see on screen (per reel)
+constexpr inline int32 kVisibleIcons = 3;
 constexpr inline int32 kButtonsCount = 2;
 constexpr inline int32 kIconWidth = 160;
 constexpr inline int32 kIconHeight = 160;

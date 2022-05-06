@@ -115,6 +115,30 @@ const IconContainer* Slot::getIconSprites() const
 	return &m_icons;
 }
 
+/*	Indicies for visible icons (for 3 reels) look like this:
+*	0---1---2
+*	3---4---5
+*	6---7---8
+*/
+IconWheelContainer Slot::getAllVisibleIcons() const
+{
+	IconWheelContainer result(m_reels.size() * kVisibleIcons);
+
+	for (int32 i = 0; i < m_reels.size(); ++i)
+	{
+		// We need to map index 0 to 0, 1 to 3, and 2 to 6 etc.
+		auto temp = m_reels[i].getVisibleIcons();
+		int32 j = i;
+		for (auto& val : temp)
+		{
+			result[j] = std::move(val);
+			j += kReelsCount;
+		}
+	}
+
+	return result;
+}
+
 void Slot::onReelStop(int32 reel_number)
 {
 	if (m_on_reel_stop)
