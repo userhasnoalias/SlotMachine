@@ -177,8 +177,8 @@ void StateCalculateWin::drawLines(Window* window)
 
 void StateCalculateWin::drawWinText(Window* window)
 {
-	sf::Vector2u wnd_size = window->size();
-	m_text.setPosition(wnd_size.x / 2.f, wnd_size.y / 4.f);
+	//sf::Vector2u wnd_size = window->size();
+	//m_text.setPosition(wnd_size.x / 2.f, wnd_size.y / 4.f);
 	window->draw(m_text);
 }
 
@@ -214,9 +214,12 @@ void StateCalculateWin::initializeText(const std::string& str)
 	FontManager* font_mgr = m_state_manager->getContext()->m_font_manager;
 	m_text.setFont(*font_mgr->getResource(IDR_CYR));
 	m_text.setString(str);
-	m_text.setCharacterSize(60);
+	m_text.setCharacterSize(120);
 	m_text.setStyle(sf::Text::Bold);
-	m_text.setFillColor(sf::Color::Magenta);
+	m_text.setFillColor(sf::Color::Green);
 	sf::FloatRect rect = m_text.getLocalBounds();
 	m_text.setOrigin(rect.left + rect.width / 2.f, rect.top + rect.height / 2.f);
+
+	auto icons = m_slot->getAllVisibleIcons();
+	m_text.setPosition(icons[1].second.x + kIconWidth / 2, 50.f);
 }

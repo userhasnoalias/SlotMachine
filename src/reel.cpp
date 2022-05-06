@@ -7,8 +7,8 @@
 #include <iterator>
 
 const std::vector<std::string> ReelIconOrders::s_reel1{ "7", "7", "7", "Cherry" };
-const std::vector<std::string> ReelIconOrders::s_reel2{ "Bigwin", "Orange", "Lemon", "Bigwin" };
-const std::vector<std::string> ReelIconOrders::s_reel3{ "Plum", "Plum", "Watermelon", "Banana" };
+const std::vector<std::string> ReelIconOrders::s_reel2{ "7", "7", "7", "7" };
+const std::vector<std::string> ReelIconOrders::s_reel3{ "7", "7", "7", "7" };
 
 Reel::Reel(Slot* owner, const sf::Vector2f& position) : m_slot{ owner }, m_position{ position }
 {

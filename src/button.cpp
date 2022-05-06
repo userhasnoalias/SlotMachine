@@ -18,7 +18,7 @@ Button::Button(SharedContext* context, const ButtonInfo& info) : m_context{ cont
 	m_text.setOrigin(rect.left + rect.width / 2.f, rect.top + rect.height / 2.f);
 
 	m_shape.setSize(info.size);
-	m_shape.setFillColor(sf::Color{ 255, 0, 0, 200 });
+	m_shape.setFillColor(info.button_color);
 }
 
 Button::~Button()

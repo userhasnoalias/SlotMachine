@@ -174,8 +174,8 @@ void Slot::createButtons()
 	start.label = "Start";
 	start.character_size = 60;
 	start.size = { 208.f, 104.f };
-	start.button_position = { 900.f, 200.f };
-	start.label_color = sf::Color::Magenta;
+	start.button_position = { 800.f, 150.f };
+	start.label_color = sf::Color::Cyan;
 	start.button_color = sf::Color::Red;
 	start.font = IDR_CYR;
 
@@ -183,8 +183,8 @@ void Slot::createButtons()
 	stop.label = "Stop";
 	stop.character_size = 60;
 	stop.size = { 208.f, 104.f };
-	stop.button_position = { 900.f, 500.f };
-	stop.label_color = sf::Color::Magenta;
+	stop.button_position = { 800.f, 450.f };
+	stop.label_color = sf::Color::Cyan;
 	stop.button_color = sf::Color::Red;
 	stop.font = IDR_CYR;
 
